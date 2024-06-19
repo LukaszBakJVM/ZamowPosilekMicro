@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class School {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long  id;
     private String schoolName;
     @OneToOne
     private SchoolAddress address;
