@@ -1,5 +1,6 @@
 package com.example.school;
 
+import com.example.school.address.SchoolAddress;
 import jakarta.persistence.*;
 
 @Entity
