@@ -1,6 +1,7 @@
 package com.example.school;
 
 import com.example.school.address.SchoolAddress;
+import com.example.school.restaurant.Restaurant;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +12,8 @@ public class School {
     private String schoolName;
     @OneToOne
     private SchoolAddress address;
+
+    private String restaurantName;
 
     public long getId() {
         return id;
@@ -34,5 +37,13 @@ public class School {
 
     public void setAddress(SchoolAddress address) {
         this.address = address;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 }
