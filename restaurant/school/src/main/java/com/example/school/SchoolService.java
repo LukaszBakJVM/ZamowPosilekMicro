@@ -1,7 +1,7 @@
 package com.example.school;
 
+import com.example.school.Dto.SchoolRegistration;
 import com.example.school.address.AddressRepository;
-import com.example.school.restaurant.Restaurant;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -22,9 +22,9 @@ public class SchoolService {
         this.restTemplate = restTemplate;
     }
 
-    SchoolDto newSchool(SchoolDto dto) {
-        String restaurantName = restTemplate.getForObject(restaurantUrl + dto.restaurantName(), Restaurant.class).restaurantName();
-        School school = mapper.dtoToEntity(dto, restaurantName);
+    SchoolRegistration newSchool(SchoolRegistration dto) {
+
+        School school = mapper.dtoToEntity(dto);
         addressRepository.save(school.getAddress());
         School save = schoolRepository.save(school);
         return mapper.entityToDto(save);
