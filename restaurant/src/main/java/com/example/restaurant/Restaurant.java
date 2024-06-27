@@ -8,7 +8,7 @@ public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private  String restaurantName;
+    private String restaurantName;
     @OneToOne
     private RestaurantAddress address;
 
