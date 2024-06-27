@@ -1,13 +1,38 @@
 package com.example.restaurant;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.restaurant.address.RestaurantAddress;
+import jakarta.persistence.*;
 
 @Entity
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private  String restaurantName;
+    @OneToOne
+    private RestaurantAddress address;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+    public RestaurantAddress getAddress() {
+        return address;
+    }
+
+    public void setAddress(RestaurantAddress address) {
+        this.address = address;
+    }
 }
