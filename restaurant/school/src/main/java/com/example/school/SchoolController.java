@@ -1,6 +1,6 @@
 package com.example.school;
 
-import com.example.school.Dto.SchoolRegistration;
+import com.example.school.dto.SchoolRegistration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -25,5 +25,4 @@ public class SchoolController {
         long id(@RequestParam String schoolUuid){
         return schoolService.findSchoolId(schoolUuid).id();
         }
-
 }

@@ -1,7 +1,7 @@
 package com.example.school;
 
-import com.example.school.Dto.SchoolId;
-import com.example.school.Dto.SchoolRegistration;
+import com.example.school.dto.SchoolId;
+import com.example.school.dto.SchoolRegistration;
 import com.example.school.address.SchoolAddress;
 import org.springframework.stereotype.Service;
 

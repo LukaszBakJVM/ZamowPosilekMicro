@@ -1,8 +1,9 @@
 package com.example.school;
 
-import com.example.school.Dto.SchoolId;
-import com.example.school.Dto.SchoolRegistration;
+import com.example.school.dto.SchoolId;
+import com.example.school.dto.SchoolRegistration;
 import com.example.school.address.AddressRepository;
+import com.example.school.exception.SchoolNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -35,7 +36,7 @@ public class SchoolService {
         return mapper.entityToDto(save);
     }
     SchoolId findSchoolId(String uuid){
-        return schoolRepository.findByUuid(uuid).map(mapper::schoolId).orElseThrow();
+        return schoolRepository.findByUuid(uuid).map(mapper::schoolId).orElseThrow(()->new SchoolNotFoundException("No school found with the given code "+uuid));
 
     }
 }
