@@ -5,6 +5,7 @@ import com.example.restaurant.dto.RestaurantRegistrationDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class RestaurantService {
@@ -23,11 +24,17 @@ public class RestaurantService {
     }
 
     RestaurantRegistrationDto newRestaurant(RestaurantRegistrationDto dto, String uuid) {
-        Long schoolId = restTemplate.getForObject(schoolUrl + "school/findSchoolId?schoolUuid=" + uuid, Long.class);
-        Restaurant restaurant = mapper.registrationDtoToEntity(dto, schoolId);
+        Long schoolIdByUuid = findSchoolIdByUuid(schoolUrl, uuid);
+        Restaurant restaurant = mapper.registrationDtoToEntity(dto, schoolIdByUuid);
         addressRepository.save(restaurant.getAddress());
         Restaurant save = restaurantRepository.save(restaurant);
         return mapper.entityToRegistrationDto(save);
 
+    }
+
+    private Long findSchoolIdByUuid(String schoolUrl, String uuid) {
+        String url = UriComponentsBuilder.fromHttpUrl(schoolUrl).path("/school/findSchoolId").queryParam("schoolUuid", uuid).toUriString();
+
+        return restTemplate.getForObject(url, Long.class);
     }
 }
