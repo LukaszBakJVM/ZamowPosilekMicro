@@ -15,14 +15,16 @@ public class SchoolController {
     public SchoolController(SchoolService schoolService) {
         this.schoolService = schoolService;
     }
+
     @PostMapping("/newSchool")
-    ResponseEntity<SchoolRegistration>addNewSchool(@RequestBody SchoolRegistration schoolRegistration){
+    ResponseEntity<SchoolRegistration> addNewSchool(@RequestBody SchoolRegistration schoolRegistration) {
         SchoolRegistration saved = schoolService.newSchool(schoolRegistration);
-        URI savedCompanyUri = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(saved.schoolName()).toUri();
-        return ResponseEntity.created(savedCompanyUri).body(saved);
+        URI savedSchoolUri = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(saved.schoolName()).toUri();
+        return ResponseEntity.created(savedSchoolUri).body(saved);
     }
+
     @GetMapping("/findSchoolId")
-        long id(@RequestParam String schoolUuid){
+    long id(@RequestParam String schoolUuid) {
         return schoolService.findSchoolId(schoolUuid).id();
-        }
+    }
 }

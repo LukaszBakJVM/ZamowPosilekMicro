@@ -11,6 +11,7 @@ public class Restaurant {
     private String restaurantName;
     @OneToOne
     private RestaurantAddress address;
+    private long schoolId;
 
     public long getId() {
         return id;
@@ -34,5 +35,13 @@ public class Restaurant {
 
     public void setAddress(RestaurantAddress address) {
         this.address = address;
+    }
+
+    public long getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(long schoolId) {
+        this.schoolId = schoolId;
     }
 }
