@@ -22,6 +22,9 @@ public class RestaurantController {
         URI savedRestaurantUri = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(restaurantRegistrationDto.restaurantName()).toUri();
         return ResponseEntity.created(savedRestaurantUri).body(restaurantRegistrationDto);
 
-
+    }
+    @GetMapping("/school/{id}")
+    RestaurantRegistrationDto findBySchoolId(@PathVariable long id){
+        return restaurantService.findRestaurantBySchoolId(id);
     }
 }

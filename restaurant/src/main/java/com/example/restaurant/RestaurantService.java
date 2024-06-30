@@ -2,6 +2,7 @@ package com.example.restaurant;
 
 import com.example.restaurant.address.AddressRepository;
 import com.example.restaurant.dto.RestaurantRegistrationDto;
+import com.example.restaurant.exception.SchoolNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -36,5 +37,9 @@ public class RestaurantService {
         String url = UriComponentsBuilder.fromHttpUrl(schoolUrl).path("/school/findSchoolId").queryParam("schoolUuid", uuid).toUriString();
 
         return restTemplate.getForObject(url, Long.class);
+    }
+    RestaurantRegistrationDto findRestaurantBySchoolId(long id){
+        Restaurant restaurant = restaurantRepository.findBySchoolId(id).orElseThrow(() -> new SchoolNotFoundException("No restaurant assigned to school with id " + id));
+        return mapper.entityToRegistrationDto(restaurant);
     }
 }
