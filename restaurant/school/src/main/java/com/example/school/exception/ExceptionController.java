@@ -18,4 +18,12 @@ public class ExceptionController {
         response.put("message", ex.getMessage());
         return response;
     }
+
+    @ExceptionHandler(ValidationException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Map<String, Object> validation(ValidationException ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", ex.getMessage());
+        return response;
+    }
 }

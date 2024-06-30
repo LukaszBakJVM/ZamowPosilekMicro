@@ -1,16 +1,21 @@
 package com.example.school;
 
 import com.example.school.address.SchoolAddress;
-import com.example.school.restaurant.Restaurant;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 @Entity
 public class School {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long  id;
+    private long id;
     private String schoolName;
     private String uuid;
+    @Email(message = "Wrong email format ")
+    private String email;
+    @OneToOne
+    private SchoolAddress address;
+    private String restaurantName;
 
     public String getUuid() {
         return uuid;
@@ -19,11 +24,6 @@ public class School {
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
-
-    @OneToOne
-    private SchoolAddress address;
-
-    private String restaurantName;
 
     public long getId() {
         return id;
@@ -55,5 +55,13 @@ public class School {
 
     public void setRestaurantName(String restaurantName) {
         this.restaurantName = restaurantName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
