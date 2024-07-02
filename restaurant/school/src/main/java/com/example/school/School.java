@@ -15,7 +15,7 @@ public class School {
     private String email;
     @OneToOne
     private SchoolAddress address;
-    private String restaurantName;
+    private long restaurantId;
 
     public String getUuid() {
         return uuid;
@@ -49,12 +49,12 @@ public class School {
         this.address = address;
     }
 
-    public String getRestaurantName() {
-        return restaurantName;
+    public long getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+    public void setRestaurantId(long restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public String getEmail() {

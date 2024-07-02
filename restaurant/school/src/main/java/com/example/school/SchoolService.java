@@ -1,8 +1,8 @@
 package com.example.school;
 
+import com.example.school.address.AddressRepository;
 import com.example.school.dto.SchoolId;
 import com.example.school.dto.SchoolRegistration;
-import com.example.school.address.AddressRepository;
 import com.example.school.exception.SchoolNotFoundException;
 import com.example.school.exception.ValidationException;
 import jakarta.validation.ConstraintViolation;
@@ -75,6 +75,21 @@ public class SchoolService {
 
         }
     }
+
+    SchoolRegistration updateSchool(long schoolId, long restaurantId) {
+        School school = schoolRepository.findById(schoolId).orElseThrow(() -> new SchoolNotFoundException("School not found"));
+        school.setRestaurantId(restaurantId);
+        School save = schoolRepository.save(school);
+        return mapper.entityToDto(save);
+    }
+    void updateSchoolRestaurantId(long schoolId,long restaurantId){
+        School school = schoolRepository.findById(schoolId).orElseThrow();
+        school.setRestaurantId(restaurantId);
+        schoolRepository.save(school);
+
+    }
+
+
 }
 
 

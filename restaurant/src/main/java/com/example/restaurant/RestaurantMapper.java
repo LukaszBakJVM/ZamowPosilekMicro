@@ -11,6 +11,7 @@ public class RestaurantMapper {
         Restaurant restaurant = new Restaurant();
         RestaurantAddress address = new RestaurantAddress();
         restaurant.setRestaurantName(registration.restaurantName());
+        restaurant.setActive(false);
         address.setStreet(registration.street());
         address.setNumber(registration.number());
         restaurant.setAddress(address);

@@ -9,4 +9,5 @@ public interface SchoolRepository extends JpaRepository<School,Long> {
     List<School> findByAddress_City(String city);
     School save(School school);
     Optional<School>findByUuid(String uuid);
+    Optional<School>findById(long id);
 }

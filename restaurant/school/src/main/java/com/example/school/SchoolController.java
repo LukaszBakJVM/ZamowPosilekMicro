@@ -27,4 +27,11 @@ public class SchoolController {
     long id(@RequestParam String schoolUuid) {
         return schoolService.findSchoolId(schoolUuid).id();
     }
+
+@GetMapping("/{schoolId}")
+void setRestaurantId(@PathVariable long schoolId,@RequestParam long restaurantId) {
+        schoolService.updateSchoolRestaurantId(schoolId,restaurantId);
+}
+
+
 }

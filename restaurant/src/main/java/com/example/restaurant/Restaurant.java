@@ -12,6 +12,7 @@ public class Restaurant {
     @OneToOne
     private RestaurantAddress address;
     private long schoolId;
+    private boolean isActive;
 
     public long getId() {
         return id;
@@ -43,5 +44,13 @@ public class Restaurant {
 
     public void setSchoolId(long schoolId) {
         this.schoolId = schoolId;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
