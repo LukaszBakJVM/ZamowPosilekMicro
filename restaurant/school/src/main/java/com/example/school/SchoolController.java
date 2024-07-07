@@ -24,15 +24,15 @@ public class SchoolController {
         return ResponseEntity.created(savedSchoolUri).body(schoolRegistrationResponse);
     }
 
-    @GetMapping("/findSchoolId")
-    long id(@RequestParam String schoolUuid) {
+    @GetMapping("/findSchoolId/{schoolUuid}")
+    long id(@PathVariable String schoolUuid) {
         return schoolService.findSchoolId(schoolUuid).id();
     }
 
-@GetMapping("/{schoolId}")
-void setRestaurantId(@PathVariable long schoolId,@RequestParam long restaurantId) {
-        schoolService.updateSchoolRestaurantId(schoolId,restaurantId);
-}
+    @GetMapping("/{schoolId}")
+    void setRestaurantId(@PathVariable long schoolId, @RequestParam long restaurantId) {
+        schoolService.updateSchoolRestaurantId(schoolId, restaurantId);
+    }
 
 
 }

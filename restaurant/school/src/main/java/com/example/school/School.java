@@ -17,6 +17,8 @@ public class School {
     @OneToOne
     private SchoolAddress address;
     private long restaurantId;
+    private String roles;
+
 
     public String getUuid() {
         return uuid;
@@ -72,5 +74,13 @@ public class School {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

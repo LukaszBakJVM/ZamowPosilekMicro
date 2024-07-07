@@ -30,14 +30,14 @@ public class RestaurantService {
         Restaurant restaurant = mapper.registrationDtoToEntity(dto, schoolIdByUuid);
         addressRepository.save(restaurant.getAddress());
         Restaurant save = restaurantRepository.save(restaurant);
-        schoolSetRestaurantId(save.getId(),schoolIdByUuid);
+        schoolSetRestaurantId(save.getId(), schoolIdByUuid);
         return mapper.entityToRegistrationDto(save);
 
     }
 
     private Long findSchoolIdByUuid(String schoolUrl, String uuid) {
         try {
-            String url = UriComponentsBuilder.fromHttpUrl(schoolUrl).path("/school/findSchoolId").queryParam("schoolUuid", uuid).toUriString();
+            String url = UriComponentsBuilder.fromHttpUrl(schoolUrl).path("/school/findSchoolId/{schoolUuid}").buildAndExpand(uuid).toUriString();
             return restTemplate.getForObject(url, Long.class);
         } catch (HttpClientErrorException.NotFound e) {
             throw new SchoolNotFoundException("School not found");
@@ -48,12 +48,10 @@ public class RestaurantService {
         Restaurant restaurant = restaurantRepository.findBySchoolId(id).orElseThrow(() -> new SchoolNotFoundException("No restaurant assigned to school with id " + id));
         return mapper.entityToRegistrationDto(restaurant);
     }
+
     void schoolSetRestaurantId(long restaurantId, long schoolId) {
-        String restaurantId1 = UriComponentsBuilder.fromHttpUrl(schoolUrl+"/school/")
-                .pathSegment(String.valueOf(schoolId))
-                .queryParam("restaurantId", restaurantId)
-                .toUriString();
-        System.out.println(restaurantId1);
-        restTemplate.getForObject(restaurantId1,Void.class);
+        String restaurantId1 = UriComponentsBuilder.fromHttpUrl(schoolUrl + "/school/").pathSegment(String.valueOf(schoolId)).queryParam("restaurantId", restaurantId).toUriString();
+
+        restTemplate.getForObject(restaurantId1, Void.class);
     }
 }

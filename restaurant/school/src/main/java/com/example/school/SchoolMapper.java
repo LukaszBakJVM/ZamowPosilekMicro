@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SchoolMapper {
     private final PasswordEncoder passwordEncoder;
+    private final String role = "SCHOOL";
 
     public SchoolMapper(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
@@ -24,6 +25,7 @@ public class SchoolMapper {
         school.setEmail(dto.email());
         String password = passwordEncoder.encode(dto.password());
         school.setPassword(password);
+        school.setRoles(role);
         address.setCity(dto.city());
         address.setZipCode(dto.zipCode());
         address.setStreet(dto.street());
@@ -40,6 +42,6 @@ public class SchoolMapper {
         return new SchoolId(school.getId());
     }
     SchoolLogin login(School school){
-        return new SchoolLogin(school.getEmail(),school.getPassword());
+        return new SchoolLogin(school.getEmail(),school.getPassword(),school.getRoles());
     }
 }

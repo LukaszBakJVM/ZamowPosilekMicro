@@ -51,7 +51,7 @@ public class BeanConfiguration {
         );
 
 
-        http.authorizeHttpRequests(requests -> requests.requestMatchers(mvc.pattern(HttpMethod.POST, "/")).hasRole("OWNER").anyRequest().permitAll());
+        http.authorizeHttpRequests(requests -> requests.requestMatchers(mvc.pattern(HttpMethod.GET, "/school/findSchoolId/*")).hasAnyRole("SCHOOL","RESTAURANT").anyRequest().permitAll());
         http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.csrf(AbstractHttpConfigurer::disable);
         http.addFilterBefore(jwtAuthenticationFilter, AuthorizationFilter.class);
