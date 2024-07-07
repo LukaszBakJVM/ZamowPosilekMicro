@@ -40,7 +40,7 @@ public class BeanConfiguration {
         AuthenticationManager authenticationManager = authenticationManagerBuilder.getOrBuild();
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtService);
         BearerTokenFilter bearerTokenFilter = new BearerTokenFilter(jwtService);
-        
+
         PathRequest.H2ConsoleRequestMatcher h2ConsoleRequestMatcher = PathRequest.toH2Console();
         http.authorizeHttpRequests(requests->requests.requestMatchers(h2ConsoleRequestMatcher).permitAll());
         http.csrf(csrf -> csrf.ignoringRequestMatchers(h2ConsoleRequestMatcher));
@@ -51,7 +51,7 @@ public class BeanConfiguration {
         );
 
 
-        http.authorizeHttpRequests(requests -> requests.requestMatchers(mvc.pattern(HttpMethod.POST, "/api/products")).hasRole("ADMIN").requestMatchers(mvc.pattern("/api/products")).hasAnyRole("USER", "ADMIN").anyRequest().permitAll());
+        http.authorizeHttpRequests(requests -> requests.requestMatchers(mvc.pattern(HttpMethod.POST, "/")).hasRole("OWNER").anyRequest().permitAll());
         http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.csrf(AbstractHttpConfigurer::disable);
         http.addFilterBefore(jwtAuthenticationFilter, AuthorizationFilter.class);
