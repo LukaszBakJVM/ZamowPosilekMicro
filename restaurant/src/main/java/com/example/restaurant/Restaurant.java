@@ -1,7 +1,10 @@
 package com.example.restaurant;
 
 import com.example.restaurant.address.RestaurantAddress;
+import com.example.restaurant.menu.Menu;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Restaurant {
@@ -9,10 +12,13 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String restaurantName;
+    private String bankAccount;
     @OneToOne
     private RestaurantAddress address;
     private long schoolId;
-    private boolean isActive;
+    @OneToMany
+    private List<Menu>menus;
+
 
     public long getId() {
         return id;
@@ -46,11 +52,19 @@ public class Restaurant {
         this.schoolId = schoolId;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public String getBankAccount() {
+        return bankAccount;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setBankAccount(String bankAccount) {
+        this.bankAccount = bankAccount;
+    }
+
+    public List<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
     }
 }

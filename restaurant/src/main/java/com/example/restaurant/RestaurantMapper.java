@@ -11,7 +11,8 @@ public class RestaurantMapper {
         Restaurant restaurant = new Restaurant();
         RestaurantAddress address = new RestaurantAddress();
         restaurant.setRestaurantName(registration.restaurantName());
-        restaurant.setActive(false);
+        restaurant.setBankAccount(registration.bankAccount());
+
         address.setStreet(registration.street());
         address.setNumber(registration.number());
         restaurant.setAddress(address);
@@ -20,7 +21,7 @@ public class RestaurantMapper {
     }
 
     RestaurantRegistrationDto entityToRegistrationDto(Restaurant restaurant) {
-        return new RestaurantRegistrationDto(restaurant.getRestaurantName(), restaurant.getAddress().getStreet(), restaurant.getAddress().getNumber(), restaurant.getSchoolId());
+        return new RestaurantRegistrationDto(restaurant.getRestaurantName(), restaurant.getAddress().getStreet(), restaurant.getAddress().getNumber(), restaurant.getSchoolId(),restaurant.getBankAccount());
     }
 
 
