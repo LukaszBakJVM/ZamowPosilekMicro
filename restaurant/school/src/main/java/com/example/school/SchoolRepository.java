@@ -10,4 +10,5 @@ public interface SchoolRepository extends JpaRepository<School,Long> {
     School save(School school);
     Optional<School>findByUuid(String uuid);
     Optional<School>findById(long id);
+    Optional<School>findByEmail(String email);
 }

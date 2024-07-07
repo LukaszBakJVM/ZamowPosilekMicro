@@ -13,6 +13,7 @@ public class School {
     private String uuid;
     @Email(message = "Wrong email format ")
     private String email;
+    private String password;
     @OneToOne
     private SchoolAddress address;
     private long restaurantId;
@@ -63,5 +64,13 @@ public class School {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

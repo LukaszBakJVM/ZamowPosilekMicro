@@ -3,6 +3,7 @@ package com.example.school;
 import com.example.school.address.AddressRepository;
 import com.example.school.dto.SchoolId;
 import com.example.school.dto.SchoolRegistration;
+import com.example.school.dto.SchoolRegistrationResponse;
 import com.example.school.exception.SchoolNotFoundException;
 import com.example.school.exception.ValidationException;
 import jakarta.validation.ConstraintViolation;
@@ -37,7 +38,7 @@ public class SchoolService {
         this.validation = validation;
     }
 
-    SchoolRegistration newSchool(SchoolRegistration dto) {
+    SchoolRegistrationResponse newSchool(SchoolRegistration dto) {
         String uuid = UUID.randomUUID().toString();
 
         School school = mapper.dtoToEntity(dto, uuid);
@@ -76,7 +77,7 @@ public class SchoolService {
         }
     }
 
-    SchoolRegistration updateSchool(long schoolId, long restaurantId) {
+    SchoolRegistrationResponse updateSchool(long schoolId, long restaurantId) {
         School school = schoolRepository.findById(schoolId).orElseThrow(() -> new SchoolNotFoundException("School not found"));
         school.setRestaurantId(restaurantId);
         School save = schoolRepository.save(school);
