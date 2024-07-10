@@ -1,9 +1,7 @@
 package com.example.restaurant.menu;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.restaurant.Restaurant;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,6 +16,8 @@ public class Menu {
     private BigDecimal soupPrice;
     private String mainCourse;
     private String priceMainCourse;
+    @ManyToOne
+    private Restaurant restaurant;
 
     public long getId() {
         return id;
@@ -65,5 +65,13 @@ public class Menu {
 
     public void setPriceMainCourse(String priceMainCourse) {
         this.priceMainCourse = priceMainCourse;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

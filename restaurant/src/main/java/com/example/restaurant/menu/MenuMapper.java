@@ -14,6 +14,7 @@ public class MenuMapper {
         menu.setMainCourse(dto.mainCourse());
         menu.setPriceMainCourse(dto.priceMainCourse());
         restaurant.getMenus().add(menu);
+        menu.setRestaurant(restaurant);
         return menu;
     }
     MenuDto entityToDto(Menu menu){

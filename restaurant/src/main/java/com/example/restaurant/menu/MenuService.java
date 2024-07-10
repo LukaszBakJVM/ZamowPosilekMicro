@@ -5,6 +5,8 @@ import com.example.restaurant.RestaurantRepository;
 import com.example.restaurant.menu.dto.MenuDto;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MenuService {
     private final MenuRepository menuRepository;
@@ -21,5 +23,8 @@ public class MenuService {
         Menu menu = mapper.dtoToEntity(dto, restaurant);
         Menu save = menuRepository.save(menu);
         return mapper.entityToDto(save);
+    }
+    List<MenuDto>findMenuByRestaurantId(long id){
+        return menuRepository.findMenuByRestaurantId(id).stream().map(mapper::entityToDto).toList();
     }
 }

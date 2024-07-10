@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/menu")
@@ -21,5 +22,9 @@ public class MenuController {
         URI savedMenuUri = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(menuDto).toUri();
         return ResponseEntity.created(savedMenuUri).body(menuDto);
 
+    }
+    @GetMapping("/{id}")
+    List<MenuDto>findMenuByRestaurantId(@PathVariable long id){
+        return service.findMenuByRestaurantId(id);
     }
 }
